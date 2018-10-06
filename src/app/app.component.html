@@ -8,26 +8,18 @@
 <h2>Here are some links to help you start: </h2>
 <input type="text" [(ngModel)]="usernameSearch">
 <button (click)="getUsers()">Get Users</button>
+<br/>
 
-{{ users }}
 
-<div *ngFor="let user of users | async">
-
+<div *ngFor="let user of users?.items">
   {{ user | json }}
+  <img src="{{user.avatar_url}}" alt="avatar github">
+  
+  <button (click)="getRepositories()">Get Repo</button>
 
 </div>
 
 
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
 
 

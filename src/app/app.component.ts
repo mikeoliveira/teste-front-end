@@ -13,15 +13,30 @@ export class AppComponent {
   title = 'teste-front-end';
   
   //readonly API_URL = 'https://jsonplaceholder.typicode.com/posts/';
-  readonly API_URL = 'https://api.github.com/search/users?q=';
+  readonly API_URL = 'https://api.github.com/';
   
   users: any;
+  repositories: any
+
   usernameSearch = "";
 
   constructor(private http: HttpClient) {}
 
   getUsers() {
-      this.users = this.http.get(this.API_URL + this.usernameSearch).subscribe(res => console.log(res));
-  }
+      this.users = this.http.get(this.API_URL + 'search/users?q=' + this.usernameSearch).subscribe(resultSearch => {
+        this.users = resultSearch;
+      });
+  };
+  // "repos_url": "https://api.github.com/users/mikeoliveira/repos"
+  getRepositories() {
+    this.repositories = this.http.get(this.API_URL + 'users/' + this.usernameSearch + '/repos').subscribe(res => {
+      console.log(res)
+    });
+  };
 
+  getStarring() {
+    this.repositories = this.http.get(this.API_URL + 'users/' + this.usernameSearch + '/repos').subscribe(res => {
+      console.log(res)
+    });
+  };  
 }

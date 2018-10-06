@@ -40,3 +40,7 @@ https://api.github.com/search/users?q=tom
 
 
 https://codecraft.tv/courses/angular/http/core-http-api/
+
+https://www.youtube.com/watch?v=76nZ9q_BUn8
+
+https://developer.github.com/v3/activity/starring/
