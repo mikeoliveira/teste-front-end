@@ -16,27 +16,47 @@ export class AppComponent {
   readonly API_URL = 'https://api.github.com/';
   
   users: any;
-  repositories: any
+  repositories: any;
+  stars: any;
+
+  usersDetails: any;
 
   usernameSearch = "";
 
   constructor(private http: HttpClient) {}
 
   getUsers() {
-      this.users = this.http.get(this.API_URL + 'search/users?q=' + this.usernameSearch).subscribe(resultSearch => {
+      this.http.get(this.API_URL + 'search/users?q=' + this.usernameSearch).subscribe(resultSearch => {
         this.users = resultSearch;
       });
   };
-  // "repos_url": "https://api.github.com/users/mikeoliveira/repos"
-  getRepositories() {
-    this.repositories = this.http.get(this.API_URL + 'users/' + this.usernameSearch + '/repos').subscribe(res => {
-      console.log(res)
+
+  getUsersDetails(arg) {
+    console.log(arg);
+    this.http.get(this.API_URL + 'users/' + arg).subscribe(resultSearch => {
+      console.log(resultSearch)
+      this.usersDetails = resultSearch;
     });
   };
 
-  getStarring() {
+  
+
+  // "repos_url": "https://api.github.com/users/mikeoliveira/repos"
+  getRepositories() {
     this.repositories = this.http.get(this.API_URL + 'users/' + this.usernameSearch + '/repos').subscribe(res => {
-      console.log(res)
+      console.log(res);
+    });
+  };
+
+  getStars() {
+    this.repositories = this.http.get(this.API_URL + 'users/' + this.usernameSearch + '/starred').subscribe(res => {
+      console.log(res);
+      this.stars = res;
+      this.getStarsOwner(this.stars);
     });
   };  
+
+  getStarsOwner(arg) {
+    console.log('Owner --> ' + arg.json());
+  }
 }
