@@ -6,8 +6,9 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  //
+
   //token github - 11e05db3aee4e33939816ab564d79bb42e15e7b5
 
   title = 'teste-front-end';
@@ -23,7 +24,9 @@ export class AppComponent {
 
   usernameSearch = "";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    
+  }
 
   getUsers() {
       this.http.get(this.API_URL + 'search/users?q=' + this.usernameSearch).subscribe(resultSearch => {
@@ -39,9 +42,8 @@ export class AppComponent {
     });
   };
 
-  
-
   // "repos_url": "https://api.github.com/users/mikeoliveira/repos"
+
   getRepositories() {
     this.repositories = this.http.get(this.API_URL + 'users/' + this.usernameSearch + '/repos').subscribe(res => {
       console.log(res);
@@ -59,4 +61,5 @@ export class AppComponent {
   getStarsOwner(arg) {
     console.log('Owner --> ' + arg.json());
   }
+ 
 }

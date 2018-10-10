@@ -5,22 +5,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { ListComponent } from './list/list.component';
 import { DetailsComponent } from './details/details.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: RouterModule[] = [
   { path: 'list', component: ListComponent },
   { path: 'details', component: DetailsComponent },
-  { path: '', redirectTo: '/list', pathMatch: 'prefix' }
+  { path: ':user', component: SearchComponent}
  ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     ListComponent,
-    DetailsComponent
+    DetailsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule, FormsModule ,HttpClientModule, RouterModule.forRoot(routes)
